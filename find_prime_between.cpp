@@ -33,14 +33,22 @@ void find_prime_between(long long int first, long long int second){
 }
 
 int main(){
-  int cases;
-  cin >> cases;
+  int cases = 10;
+  //cin >> cases;
 
+  clock_t begin, end;
+  double time_spent;
+
+  begin = clock();
   while(cases--){
-    long long int first, second;
-    cin >> first >> second;
-    find_prime_between(first, second);
+    // long long int first, second;
+    // cin >> first >> second;
+    find_prime_between(999990000, 999999999);
     cout<<endl;
   }
+
+  end = clock();
+  time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+  cout << time_spent<<endl;
   return 0;
 }
