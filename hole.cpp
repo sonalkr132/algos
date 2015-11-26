@@ -1,11 +1,13 @@
 #include <iostream>
+#include <algorithm> // for std::find
 
 using namespace std;
 
 int check_holes(char input[]){
   int count = 0;
+  char hole[] = {'A', 'D', 'Q', 'R', 'O', 'P'};
   for(int i=0; input[i] != '\0'; i++){
-    if(input[i] == 'A' || input[i] == 'D' || input[i] == 'Q' || input[i] == 'R' || input[i] == 'O' ||input[i] == 'P' ) count ++;
+    if(find(hole, hole+6, input[i]) != hole+6) count ++;
     else if(input[i] == 'B') count+=2;
   }
   return count;
@@ -22,3 +24,4 @@ int main(){
   }
   return 0;
 }
+y
