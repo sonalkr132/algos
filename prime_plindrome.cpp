@@ -13,7 +13,7 @@ bool check_palindrome(int val){
 }
 
 bool check_prime(int val){
-  for(int i = 2; i < val/2; i++){
+  for(int i = 2; i <= val/2; i++){
     if((val % i) == 0) return false;
   }
   return true;
@@ -35,6 +35,6 @@ int main(){
   int input;
   cin >> input;
   int ans = find_prime_palindrome(input);
-  cout << ans;
+  cout << ans << endl;
   return 0;
 }
