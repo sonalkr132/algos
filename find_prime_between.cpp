@@ -5,11 +5,12 @@
 
 using namespace std;
 
-int set_start(int val, int multiple){
+int set_start(int val, int multiple, int second){
   int ans;
-  for(int i = val; ; i++){
+  for(int i = val; i<=second; i++){
     if(i % multiple == 0) return i;
   }
+  return -1;
 }
 
 void find_prime_between(long long int first, long long int second){
@@ -21,7 +22,9 @@ void find_prime_between(long long int first, long long int second){
   if(first == 1) prime[0] = false;
 
   for(long long int i=2; i<=sqrt(second); i++){
-    int start = set_start(first, i);
+    int start = set_start(first, i, second);
+    if(start == -1) continue;
+
     for(long long int j=start; j<=second; j+=i){
       prime[j-first] = false;
     }
@@ -33,7 +36,7 @@ void find_prime_between(long long int first, long long int second){
 }
 
 int main(){
-  int cases = 10;
+  int cases = 1;
   //cin >> cases;
 
   clock_t begin, end;
@@ -43,7 +46,7 @@ int main(){
   while(cases--){
     // long long int first, second;
     // cin >> first >> second;
-    find_prime_between(999990000, 999999999);
+    find_prime_between(990, 1900);
     cout<<endl;
   }
 
