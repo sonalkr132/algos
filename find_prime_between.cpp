@@ -5,15 +5,17 @@
 
 using namespace std;
 
-int set_start(int val, int multiple, int second){
+long long int set_start(long long int val, int multiple,long long int second){
   if(val%multiple == 0) return val;
-  int rem = val%multiple;
-  if(val+multiple-rem > second ) return -1;
-  else return val+multiple-rem;
+  long long int rem = val%multiple;
+  int return_val = val+multiple-rem;
+  if( return_val > second ) return -1;
+  else if (return_val == multiple ) return return_val+=multiple;
+  else return return_val;
 }
 
 void find_prime_between(long long int first, long long int second){
-  int range = second - first;
+  long long int range = second - first;
   bool prime[range+1];
 
   memset(prime, true, sizeof(prime));
@@ -21,7 +23,7 @@ void find_prime_between(long long int first, long long int second){
   if(first == 1) prime[0] = false;
 
   for(long long int i=2; i<=sqrt(second); i++){
-    int start = set_start(first, i, second);
+    long long int start = set_start(first, i, second);
 
     if(start == -1) continue;
     //cout<<"start "<<start<<" multiple "<< i<<endl;
@@ -35,7 +37,7 @@ void find_prime_between(long long int first, long long int second){
     }
   }
 
-  for (int i = 0; i <= range; i++){
+  for (long long int i = 0; i <= range; i++){
     if(prime[i]) cout<< first+i<<endl;
   }
 }
