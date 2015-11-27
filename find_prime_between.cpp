@@ -6,11 +6,18 @@
 using namespace std;
 
 int set_start(int val, int multiple, int second){
-  int ans;
-  for(int i = val; i<=second; i++){
-    if(i % multiple == 0) return i;
+  if(val%multiple == 0) return val;
+  int tmp_start = val;
+  val = val+multiple;
+  if(val % multiple != 0 ){
+    for(int i = tmp_start; i<val && i<=second ;i++){
+      if(i%multiple == 0) return i;
+    }
   }
-  return -1;
+
+  while(val % multiple != 0 && val <= second) val+= multiple;
+  if(val > second) return -1;
+  else return val;
 }
 
 void find_prime_between(long long int first, long long int second){
@@ -23,7 +30,7 @@ void find_prime_between(long long int first, long long int second){
 
   for(long long int i=2; i<=sqrt(second); i++){
     int start = set_start(first, i, second);
-    if(start == -1) continue;
+    if(start == -1 || !prime[start-first]) continue;
 
     for(long long int j=start; j<=second; j+=i){
       prime[j-first] = false;
