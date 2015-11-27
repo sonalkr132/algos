@@ -7,17 +7,9 @@ using namespace std;
 
 int set_start(int val, int multiple, int second){
   if(val%multiple == 0) return val;
-  int tmp_start = val;
-  val = val+multiple;
-  if(val % multiple != 0 ){
-    for(int i = tmp_start; i<val && i<=second ;i++){
-      if(i%multiple == 0) return i;
-    }
-  }
-
-  while(val % multiple != 0 && val <= second) val+= multiple;
-  if(val > second) return -1;
-  else return val;
+  int rem = val%multiple;
+  if(val+multiple-rem > second ) return -1;
+  else return val+multiple-rem;
 }
 
 void find_prime_between(long long int first, long long int second){
@@ -30,9 +22,15 @@ void find_prime_between(long long int first, long long int second){
 
   for(long long int i=2; i<=sqrt(second); i++){
     int start = set_start(first, i, second);
-    if(start == -1 || !prime[start-first]) continue;
+
+    if(start == -1) continue;
+    //cout<<"start "<<start<<" multiple "<< i<<endl;
+
+
 
     for(long long int j=start; j<=second; j+=i){
+      if(j == 2 || j == 3 || j == 5 || j == 7) continue;
+      //cout<<j<<endl;
       prime[j-first] = false;
     }
   }
@@ -43,22 +41,22 @@ void find_prime_between(long long int first, long long int second){
 }
 
 int main(){
-  int cases = 1;
-  //cin >> cases;
+  int cases = 10;
+  cin >> cases;
 
-  clock_t begin, end;
-  double time_spent;
+  // clock_t begin, end;
+  // double time_spent;
 
-  begin = clock();
+  // begin = clock();
   while(cases--){
-    // long long int first, second;
-    // cin >> first >> second;
-    find_prime_between(990, 1900);
+    long long int first, second;
+    cin >> first >> second;
+    find_prime_between(first, second);
     cout<<endl;
   }
 
-  end = clock();
-  time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-  cout << time_spent<<endl;
+  // end = clock();
+  // time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+  // cout << time_spent<<endl;
   return 0;
 }
