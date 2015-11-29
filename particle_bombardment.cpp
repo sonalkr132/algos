@@ -1,24 +1,17 @@
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
-int a[100] = {0};
-
-void make_stable(int max_particles, int no_chambers){
-  int cur = a[0], count = 0;
-  while(cur > max_particles && count < no_chambers){
-    a[count] = 0;
-    a[count+1]++;
-    count++;
-    cur = a[count];
-  }
-}
+int a[101] = {0};
 
 void find_distribution(long long int no_particles, int max_particles, int no_chambers){
 
-  while(no_particles--){
-    a[0]++;
-    if(a[0] > max_particles) make_stable(max_particles, no_chambers);
+  for(int i=1; i<=no_chambers; i++){
+    int tmp = ((int)pow((max_particles+1), i));
+    int pre_tmp = (int)pow((max_particles+1), (i -1));
+    long long int rem = no_particles%tmp;
+    a[i] = rem/pre_tmp;
   }
 }
 
@@ -28,7 +21,7 @@ int main(){
   cin >> no_particles >> max_particles >> no_chambers;
 
   find_distribution(no_particles, max_particles, no_chambers);
-  for(int i=0; i<no_chambers; i++) cout << a[i] << " ";
+  for(int i=1; i<=no_chambers; i++) cout << a[i] << " ";
   cout << endl;
   return 0;
 }
