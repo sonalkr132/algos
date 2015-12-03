@@ -3,12 +3,12 @@
 
 using namespace std;
 
-int *find_binary(int num){
-  static int arr[100001] = {0}, i=0;
+int *find_binary(int num, int size){
+  static int arr[100001] = {0}, i=size-1;
 
   while(num!=0){
     int r = num%2;
-    arr[i++] = r;
+    arr[i--] = r;
     num /= 2;
   }
 
@@ -26,7 +26,7 @@ int main(){
   for(int i=0; i<size_n; i++){
     int l, u;
     cin >> l >> u;
-    int num = (pow(2, u) - pow(2, l-1));
+    int num = (pow(2, size_n-l+1) - pow(2, size_n-u));
     dec[i-1] = num;
     num_ones[i-1] = (u-l+1);
 
@@ -37,7 +37,7 @@ int main(){
 
   }
 
-  int *bin = find_binary(parity);
+  int *bin = find_binary(parity, size_n);
 
   int query;
   cin >> query;
@@ -64,7 +64,7 @@ int main(){
     }
 
     //find interstion
-    int intersection = pow(2, j-1);
+    int intersection = pow(2, size_n-j);
 
     if(dec[i-1] & intersection){
       even_parity = even_parity?false:true;
