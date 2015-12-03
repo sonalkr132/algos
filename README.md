@@ -1,3 +1,3 @@
 # alogs
 
-Problems solved in codechef and others
+Problems solved on codechef and others
