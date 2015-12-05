@@ -13,15 +13,33 @@ unsigned long long int find_min(unsigned long long int a, unsigned long long int
   }
 }
 
+int find_sum(int n){
+  return (n*(n+1))/2;
+}
+
 unsigned long long int find_minimum_left_stones(unsigned long long int pile_a, unsigned long long int pile_b, unsigned long long int max_remove){
-  if(max_remove == 0) return pile_a + pile_b;
-  while(true){
-    unsigned long long int removeable = find_min(pile_a, pile_b, max_remove);
-    if(pile_a >= removeable) pile_a -= removeable;
-    if(pile_b >= removeable) pile_b -= removeable;
-    max_remove--;
-    if(max_remove == 0) return pile_b + pile_a;
+  if(max_remove == 0) return pile_a + pile_b; //int i = 0;
+  unsigned long long int removeable = find_min(pile_a, pile_b, max_remove);
+
+  if(removeable == max_remove){
+    int min = pile_a > pile_b ? pile_b: pile_a;
+    int times = min/max_remove;
+    pile_a -= times * max_remove - find_sum(times - 1);
+    pile_b -= times * max_remove - find_sum(times - 1);
+    removeable = max_remove - times;
+    max_remove = removeable;
   }
+
+  int removeable_sum = find_sum(removeable);
+
+  while(removeable != 0){
+    removeable = find_min(pile_a, pile_b, max_remove);
+    //cout << max_remove <<" "<< removeable<<" " << pile_a<<" " << pile_b << endl;
+    pile_a -= removeable;
+    pile_b -= removeable;
+    max_remove = removeable-1; //i++;
+  }
+  return pile_b + pile_a;
 }
 
 int main(){
