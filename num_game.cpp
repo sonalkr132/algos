@@ -2,7 +2,7 @@
 problem: each player subtracts a proper divisior of a number from it.
          player who can't subtract anymore will lose. Alicse starts first
          q_link: https://www.codechef.com/problems/NUMGAME/
-         
+
 solution: found with checking all the smaller cases on copy
           optimum move is just to subtract one (1) each time.
           Alice wins if number is even.

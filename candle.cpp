@@ -3,7 +3,7 @@ problem: Given a string of number of candles of each type -
          2 1 1 4 0 6 3 2 2 2 (2 candles of 0, 1 candle of 1, 1 candle of 2, 4 candles of 3 and so on)
          find the smallest number you can't make from them.
          q_link: https://www.codechef.com/problems/CANDLE
-         
+
 solution: if any of the candles is 0 (except 0 itself) then smallest number will be that number (in above ex: 4)
           if candle 0 is zero (or smallest) then find the next smallest too. Make the number using these two.
           for rest, find the samllest number (count will be non zero). smallest number formed will be one more smmllest_count

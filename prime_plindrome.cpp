@@ -1,7 +1,7 @@
 /*
 problem: given a number find the smallest prime number greater than n such that it is also a palindrome
          q_link: https://www.codechef.com/problems/PRPALIN
-         
+
 solution: check for prime iteratively (test upto num/2)
           if prime, check for palindorme with reversing the number mathematically
 */

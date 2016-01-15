@@ -3,7 +3,7 @@ problem: given no_of_bombardments, champers and capacity of chambers, find the s
          each bombardment splits particle in two. Fix capacity of chamber exceeds then one particle goes to next and
          particle count in current chamber is set to zero.
          q_link: https://www.codechef.com/problems/NUKES
-         
+
 solution: found pattern with smaller cases in copy
           rem = no_of_bombardments%((capacity+1)^chamber_index)
           particles[chamber_index] = rem/((capacity+1)^previous_chamber_index)

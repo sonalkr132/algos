@@ -2,7 +2,7 @@
 problem: A coin of bytelandian can be exchanged with coins of n/2, n/3 and n/4 (rounded down)
          Also 1 Coin = 1$. Find the maximum you can make from exchange for given coin value.
          q_link: https://www.codechef.com/problems/COINS
-         
+
 solution: with memoization.
           Coin can be as big as 10^9. So save on computation with memoization.
           when calculation n/2, n/3 and n/4, check if those values are already computed in a recursive func.
